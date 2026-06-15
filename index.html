@@ -3,17 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VampySec - Tools & Análisis Online</title>
+    <title>VampySec | Tools & Análisis Online</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='10' y='80' font-size='80'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     
     <style>
         :root {
-            --primary: #6a0dad;
+            --primary: #7b2cbf;
             --accent: #ff00cc;
+            --dark: #0a0a0a;
+            --card: #12121a;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 100%);
@@ -24,9 +30,9 @@
         }
 
         .navbar {
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(12px);
-            padding: 15px 5%;
+            background: rgba(10, 10, 20, 0.97);
+            backdrop-filter: blur(16px);
+            padding: 18px 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -34,20 +40,18 @@
             top: 0;
             z-index: 1000;
             border-bottom: 2px solid var(--primary);
-            flex-wrap: wrap;
-            gap: 15px;
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            background: linear-gradient(90deg, #ff00cc, #6a0dad);
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #ff00cc, #9d4edd);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .nav-tabs {
@@ -57,69 +61,71 @@
         }
 
         .nav-btn {
-            padding: 10px 22px;
-            border-radius: 30px;
-            background: rgba(106, 13, 173, 0.2);
-            border: 1px solid var(--primary);
+            padding: 12px 26px;
+            border-radius: 50px;
+            background: rgba(123, 44, 191, 0.15);
+            border: 1px solid rgba(123, 44, 191, 0.4);
             color: white;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             font-weight: 600;
             white-space: nowrap;
         }
 
         .nav-btn:hover, .nav-btn.active {
             background: linear-gradient(135deg, var(--primary), var(--accent));
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(106, 13, 173, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(155, 0, 204, 0.3);
+            border-color: var(--accent);
         }
 
         .main-content {
-            padding: 40px 5%;
-            max-width: 1450px;
+            padding: 50px 6%;
+            max-width: 1480px;
             margin: 0 auto;
         }
 
         .page { display: none; }
         .page.active-page {
             display: block;
-            animation: fadeIn 0.4s ease;
+            animation: fadeIn 0.5s ease;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .card {
-            background: rgba(15, 15, 30, 0.9);
-            backdrop-filter: blur(10px);
+            background: var(--card);
             border: 1px solid #2a1a4a;
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
+            border-radius: 24px;
+            padding: 35px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         }
 
         .card h2 {
             color: #d86eff;
-            margin-bottom: 25px;
-            font-size: 1.75rem;
-            border-left: 5px solid var(--accent);
-            padding-left: 18px;
+            margin-bottom: 30px;
+            font-size: 1.85rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 22px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
         }
 
         .tool-card {
-            background: rgba(0, 0, 0, 0.45);
+            background: rgba(20, 20, 35, 0.6);
             border: 1px solid #3a2a5a;
-            border-radius: 16px;
-            padding: 22px;
-            transition: all 0.3s ease;
+            border-radius: 18px;
+            padding: 26px;
+            transition: all 0.4s ease;
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -127,53 +133,59 @@
 
         .tool-card:hover {
             border-color: var(--accent);
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(255, 0, 204, 0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 0, 204, 0.15);
         }
 
         .tool-name {
-            font-size: 1.25rem;
-            margin-bottom: 10px;
-            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: #ffffff;
         }
 
         .tool-desc {
             flex-grow: 1;
-            margin-bottom: 15px;
-            color: #b0b0b0;
-            font-size: 0.95rem;
+            color: #a0a0c0;
+            margin-bottom: 20px;
+            font-size: 0.97rem;
         }
 
         .btn {
             background: linear-gradient(135deg, var(--primary), var(--accent));
             color: white;
             border: none;
-            padding: 11px 24px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 700;
             text-decoration: none;
             display: inline-block;
             text-align: center;
+            transition: all 0.3s ease;
             margin-top: auto;
-            transition: all 0.3s;
         }
 
         .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 18px rgba(255, 0, 204, 0.5);
+            transform: scale(1.06);
+            box-shadow: 0 0 20px rgba(255, 0, 204, 0.6);
         }
 
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid #2a1a4a;
+            margin-top: 50px;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .navbar { flex-direction: column; text-align: center; padding: 15px 8%; }
+            .navbar { flex-direction: column; padding: 18px 8%; }
             .nav-tabs { justify-content: center; }
-            .main-content { padding: 25px 6%; }
-            .card { padding: 22px; }
-            .grid { grid-template-columns: 1fr; gap: 18px; }
+            .main-content { padding: 30px 6%; }
+            .card { padding: 25px; }
+            .grid { grid-template-columns: 1fr; }
         }
-
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
     </style>
 </head>
 <body>
@@ -185,7 +197,8 @@
     </div>
     <div class="nav-tabs">
         <div class="nav-btn active" data-page="tools">🔧 TOOLS ONLINE</div>
-        <div class="nav-btn" data-page="analysis">🛡️ ANÁLISIS ONLINE</div>
+        <div class="nav-btn" data-page="analysis">🛡️ ANÁLISIS</div>
+        <div class="nav-btn" data-page="learning">📚 APRENDIZAJE & CTF</div>
     </div>
 </div>
 
@@ -199,57 +212,62 @@
         </div>
     </div>
 
-    <!-- ANÁLISIS ONLINE -->
+    <!-- ANÁLISIS -->
     <div id="analysis-page" class="page">
         <div class="card">
-            <h2><i class="fas fa-search"></i> Plataformas de Análisis Online (Gratis)</h2>
+            <h2><i class="fas fa-search"></i> Plataformas de Análisis Online</h2>
             <div class="grid" id="analysis-grid"></div>
+        </div>
+    </div>
+
+    <!-- APRENDIZAJE Y CTF -->
+    <div id="learning-page" class="page">
+        <div class="card">
+            <h2><i class="fas fa-graduation-cap"></i> Aprendizaje y Práctica</h2>
+            <div class="grid" id="learning-grid"></div>
         </div>
     </div>
 
 </div>
 
+<footer>
+    VampySec — Herramientas Online Gratuitas • Solo para fines educativos y de investigación
+</footer>
+
 <script>
-// ==================== TOOLS ONLINE GRATUITAS ====================
+// ==================== DATOS ====================
 const tools = [
-    { name: "Nmap Online", desc: "Escáner de puertos y servicios (Hackertarget)", url: "https://hackertarget.com/nmap-online-port-scanner/", icon: "fa-network-wired" },
-    { name: "Port Scanner", desc: "Escáner rápido de puertos", url: "https://pentest-tools.com/network-vulnerability-scanning/port-scanner-online-nmap", icon: "fa-plug" },
-    { name: "Web Vulnerability Scanner", desc: "Escáner de vulnerabilidades web", url: "https://pentest-tools.com/website-vulnerability-scanning/website-scanner", icon: "fa-spider" },
-    { name: "SQL Injection Tester", desc: "Pruebas de inyección SQL online", url: "https://pentest-tools.com/website-vulnerability-scanning/sql-injection-scanner-online", icon: "fa-database" },
-    { name: "SSL/TLS Tester", desc: "Análisis completo de certificados SSL", url: "https://www.ssllabs.com/ssltest/", icon: "fa-lock" },
-    { name: "DNS Lookup & WHOIS", desc: "Herramientas DNS completas", url: "https://dnschecker.org/", icon: "fa-globe" },
-    { name: "Shodan", desc: "Buscador de dispositivos expuestos", url: "https://www.shodan.io/", icon: "fa-search" }
+    { name: "Nmap Online", desc: "Escáner de puertos y servicios avanzado", url: "https://pentest-tools.com/network-vulnerability-scanning/port-scanner-online-nmap", icon: "fa-network-wired" },
+    { name: "Web Vulnerability Scanner", desc: "Escáner completo de vulnerabilidades web", url: "https://pentest-tools.com/website-vulnerability-scanning/website-scanner", icon: "fa-spider" },
+    { name: "SQL Injection Tester", desc: "Pruebas automáticas de SQL Injection", url: "https://pentest-tools.com/website-vulnerability-scanning/sql-injection-scanner-online", icon: "fa-database" },
+    { name: "SSL/TLS Tester", desc: "Análisis profesional de certificados SSL", url: "https://www.ssllabs.com/ssltest/", icon: "fa-lock" },
+    { name: "DNS Lookup & WHOIS", desc: "Herramientas completas de DNS", url: "https://dnschecker.org/", icon: "fa-globe" },
+    { name: "EXIF Metadata", desc: "Visor avanzado de metadatos en imágenes", url: "https://exif.tools/", icon: "fa-image" },
+    { name: "Subdomain Enumerator", desc: "Enumeración de subdominios", url: "https://pentest-tools.com/information-gathering/find-subdomains-of-domain", icon: "fa-sitemap" }
 ];
 
-// ==================== ANÁLISIS ONLINE (todos gratis) ====================
 const analysisTools = [
-    { name: "VirusTotal", desc: "Análisis de archivos, URLs y hashes (el más completo)", url: "https://www.virustotal.com/gui/home/upload" },
+    { name: "VirusTotal", desc: "Análisis de archivos, URLs y hashes", url: "https://www.virustotal.com/gui/home/upload" },
     { name: "URLScan.io", desc: "Análisis detallado de URLs y phishing", url: "https://urlscan.io/" },
     { name: "Hybrid Analysis", desc: "Sandbox gratuito de malware", url: "https://hybrid-analysis.com/" },
-    { name: "MetaDefender Cloud", desc: "Análisis con múltiples motores antivirus", url: "https://metadefender.com/" },
-    { name: "Sandbox Policía Nacional", desc: "Sandbox CSIRT de la Policía de Colombia (Gratis y Público)", url: "https://cc-csirt.policia.gov.co/" },
-    { name: "Filescan.io", desc: "Análisis rápido de archivos y URLs", url: "https://www.filescan.io/" }
+    { name: "Sandbox Policía Nacional", desc: "CSIRT - Policía Nacional de Colombia", url: "https://cc-csirt.policia.gov.co/" },
+    { name: "Exploit-DB", desc: "Base de datos pública de exploits", url: "https://www.exploit-db.com/" }
 ];
 
-// Render Functions
-function renderTools() {
-    const container = document.getElementById('tools-grid');
-    container.innerHTML = tools.map(tool => `
-        <div class="tool-card">
-            <h3 class="tool-name"><i class="fas ${tool.icon}"></i> ${tool.name}</h3>
-            <p class="tool-desc">${tool.desc}</p>
-            <a href="${tool.url}" target="_blank" class="btn">Acceder →</a>
-        </div>
-    `).join('');
-}
+const learning = [
+    { name: "TryHackMe", desc: "Aprendizaje práctico guiado (recomendado)", url: "https://tryhackme.com/" },
+    { name: "Hack The Box", desc: "Retos y máquinas de nivel real", url: "https://www.hackthebox.com/" },
+    { name: "Foro ElHacker.net", desc: "Comunidad hispana de ciberseguridad", url: "https://foro.elhacker.net/" }
+];
 
-function renderAnalysis() {
-    const container = document.getElementById('analysis-grid');
-    container.innerHTML = analysisTools.map(tool => `
+// Render Function
+function renderSection(data, containerId) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = data.map(item => `
         <div class="tool-card">
-            <h3 class="tool-name"><i class="fas fa-search"></i> ${tool.name}</h3>
-            <p class="tool-desc">${tool.desc}</p>
-            <a href="${tool.url}" target="_blank" class="btn">Acceder →</a>
+            <h3 class="tool-name"><i class="fas ${item.icon}"></i> ${item.name}</h3>
+            <p class="tool-desc">${item.desc}</p>
+            <a href="${item.url}" target="_blank" class="btn">Acceder →</a>
         </div>
     `).join('');
 }
@@ -266,8 +284,9 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
 });
 
 // Inicializar
-renderTools();
-renderAnalysis();
+renderSection(tools, 'tools-grid');
+renderSection(analysisTools, 'analysis-grid');
+renderSection(learning, 'learning-grid');
 </script>
 </body>
 </html>
