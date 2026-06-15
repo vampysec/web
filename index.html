@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VampySec - Tools & Análisis</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='10' y='80' font-size='80'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #6a0dad;
+            --accent: #ff00cc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 100%);
+            color: #e0e0e0;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--primary);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, #ff00cc, #6a0dad);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            padding: 10px 22px;
+            border-radius: 30px;
+            background: rgba(106, 13, 173, 0.2);
+            border: 1px solid var(--primary);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(106, 13, 173, 0.4);
+        }
+
+        .main-content {
+            padding: 40px 5%;
+            max-width: 1450px;
+            margin: 0 auto;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active-page {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: rgba(15, 15, 30, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid #2a1a4a;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .card h2 {
+            color: #d86eff;
+            margin-bottom: 25px;
+            font-size: 1.75rem;
+            border-left: 5px solid var(--accent);
+            padding-left: 18px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 22px;
+        }
+
+        .tool-card {
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid #3a2a5a;
+            border-radius: 16px;
+            padding: 22px;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tool-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(255, 0, 204, 0.15);
+        }
+
+        .tool-name {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .tool-desc {
+            flex-grow: 1;
+            margin-bottom: 15px;
+            color: #b0b0b0;
+            font-size: 0.95rem;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            padding: 11px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            margin-top: auto;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 18px rgba(255, 0, 204, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px 8%;
+            }
+            
+            .nav-tabs {
+                justify-content: center;
+            }
+            
+            .main-content {
+                padding: 25px 6%;
+            }
+            
+            .card {
+                padding: 22px;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+            
+            .tool-name {
+                font-size: 1.15rem;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <div class="logo">
+        <span>🦇</span>
+        <span>VAMPYSEC</span>
+    </div>
+    <div class="nav-tabs">
+        <div class="nav-btn active" data-page="tools">🔧 TOOLS</div>
+        <div class="nav-btn" data-page="analysis">🛡️ ANÁLISIS</div>
+    </div>
+</div>
+
+<div class="main-content">
+
+    <!-- ==================== TOOLS ==================== -->
+    <div id="tools-page" class="page active-page">
+        <div class="card">
+            <h2><i class="fas fa-terminal"></i> Herramientas de Ciberseguridad</h2>
+            <div class="grid" id="tools-grid"></div>
+        </div>
+    </div>
+
+    <!-- ==================== ANÁLISIS ==================== -->
+    <div id="analysis-page" class="page">
+        <div class="card">
+            <h2><i class="fas fa-search"></i> Plataformas de Análisis Online</h2>
+            <div class="grid" id="analysis-grid"></div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+// ==================== DATOS (Fácil de ampliar) ====================
+
+const tools = [
+    { name: "Nmap", desc: "Escáner de puertos y descubrimiento de red", url: "https://nmap.org", icon: "fa-network-wired" },
+    { name: "SQLMap", desc: "Detección y explotación de inyección SQL", url: "https://sqlmap.org", icon: "fa-database" },
+    { name: "Burp Suite", desc: "Proxy interceptador y testing web", url: "https://portswigger.net/burp", icon: "fa-spider" },
+    { name: "Wireshark", desc: "Analizador de protocolos y paquetes", url: "https://www.wireshark.org", icon: "fa-plug" },
+    { name: "Metasploit", desc: "Framework de explotación", url: "https://www.metasploit.com", icon: "fa-skull-crossbones" },
+    { name: "VirusTotal", desc: "Análisis de malware y archivos", url: "https://www.virustotal.com", icon: "fa-shield-virus" },
+    { name: "Shodan", desc: "Buscador de dispositivos conectados", url: "https://www.shodan.io", icon: "fa-search" },
+    { name: "Have I Been Pwned", desc: "Verificar si tu email fue filtrado", url: "https://haveibeenpwned.com", icon: "fa-key" },
+    { name: "Exploit-DB", desc: "Base de datos de exploits públicos", url: "https://www.exploit-db.com", icon: "fa-bug" }
+];
+
+const analysisTools = [
+    { name: "URLScan.io", desc: "Análisis detallado de URLs y phishing", url: "https://urlscan.io" },
+    { name: "Hybrid Analysis", desc: "Sandbox de malware avanzado", url: "https://hybrid-analysis.com" },
+    { name: "Any.Run", desc: "Análisis interactivo en tiempo real", url: "https://any.run" },
+    { name: "Triage", desc: "Análisis rápido y automatizado", url: "https://tria.ge" },
+    { name: "Intezer", desc: "Análisis genómico de malware", url: "https://intezer.com" }
+];
+
+// ==================== RENDER ====================
+
+function renderTools() {
+    const container = document.getElementById('tools-grid');
+    container.innerHTML = tools.map(tool => `
+        <div class="tool-card">
+            <h3 class="tool-name"><i class="fas ${tool.icon}"></i> ${tool.name}</h3>
+            <p class="tool-desc">${tool.desc}</p>
+            <a href="${tool.url}" target="_blank" class="btn">Acceder →</a>
+        </div>
+    `).join('');
+}
+
+function renderAnalysis() {
+    const container = document.getElementById('analysis-grid');
+    container.innerHTML = analysisTools.map(tool => `
+        <div class="tool-card">
+            <h3 class="tool-name"><i class="fas fa-search"></i> ${tool.name}</h3>
+            <p class="tool-desc">${tool.desc}</p>
+            <a href="${tool.url}" target="_blank" class="btn">Acceder →</a>
+        </div>
+    `).join('');
+}
+
+// ==================== NAVEGACIÓN ====================
+
+document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
+        
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.page + '-page').classList.add('active-page');
+    });
+});
+
+// Inicializar
+renderTools();
+renderAnalysis();
+</script>
+</body>
+</html>
